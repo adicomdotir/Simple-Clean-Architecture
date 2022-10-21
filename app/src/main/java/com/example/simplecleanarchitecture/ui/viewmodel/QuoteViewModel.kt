@@ -1,5 +1,6 @@
 package com.example.simplecleanarchitecture.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -22,6 +23,7 @@ class QuoteViewModel @Inject constructor(
         viewModelScope.launch {
             isLoading.postValue(true)
             val result = getQuotesUseCase()
+            Log.e("TAG", result.size.toString())
 
             if (!result.isNullOrEmpty()) {
                 quoteModel.postValue(result[0])

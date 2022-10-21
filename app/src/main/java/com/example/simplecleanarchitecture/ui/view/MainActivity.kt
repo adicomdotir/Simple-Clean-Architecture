@@ -1,7 +1,8 @@
-package com.example.simplecleanarchitecture
+package com.example.simplecleanarchitecture.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         quoteViewModel.onCreate()
 
         quoteViewModel.quoteModel.observe(this, Observer {
+            Log.e("TAG", it.author)
             binding.tvQuote.text = it.quote
             binding.tvAuthor.text = it.author
         })

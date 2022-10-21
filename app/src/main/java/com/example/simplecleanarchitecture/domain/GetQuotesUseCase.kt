@@ -6,14 +6,14 @@ import com.example.simplecleanarchitecture.domain.model.Quote
 import javax.inject.Inject
 
 class GetQuotesUseCase @Inject constructor(private val repository: QuoteRepository) {
-    suspend operator fun invoke():List<Quote>{
+    suspend operator fun invoke(): List<Quote> {
         val quotes = repository.getAllQuotesFromApi()
 
-        return if(quotes.isNotEmpty()){
+        return if (quotes.isNotEmpty()) {
             repository.clearQuotes()
             repository.insertQuotes(quotes.map { it.toDatabase() })
             quotes
-        }else{
+        } else {
             repository.getAllQuotesFromDatabase()
         }
     }
